@@ -3,7 +3,31 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ItemKuah
+  - ItemNasi
+  - ItemAyam
+  - ItemJeroan
+  - ItemTelur
+  - ItemKubis
+  - ItemKoya
+  - Piring
+  - Customer
+  - 1NasiAyamKoya
+  - 2+Kubis
+  - 3+Jeroan
+  - 4+Telur
+  - 5+KubisJeroan
+  - 6+KubisTelur
+  - 7+JeroanTelur
+  - 8Komplit
+  - MakananReady
+  - DragIcon
+  - Sampah
+  - 1
+  - 2
+  - 3
+  - 4
   layers:
   - Default
   - TransparentFX
