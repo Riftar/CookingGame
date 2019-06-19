@@ -48,7 +48,8 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
 
     //riftar
     public DropEventDescriptor descPublic;
-       
+
+
 
     void Start()
     {
@@ -77,7 +78,7 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
     /// <param name="item"> dragged item </param>
     private void OnAnyItemDragStart(DragAndDropItem item)
     {
-		UpdateMyItem();
+        UpdateMyItem();
 		if (myDadItem != null)
         {
 			myDadItem.MakeRaycast(false);                                  	// Disable item's raycast for correct drop handling
@@ -181,6 +182,11 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                                             Debug.Log("Piring");
                                             piringCont.SetItem(item.name);
                                         }
+                                        else if (this.tag == "Gelas")
+                                        {
+                                            Debug.Log("Gelas");
+                                            piringCont.SetItem(item.name);
+                                        }
                                         else if (this.tag == "Customer")
                                         {
                                             Debug.Log("Customer");
@@ -201,21 +207,34 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                             StartCoroutine(NotifyOnDragEnd(desc));          // Send notification after drop will be finished
                             if (desc.permission == true)                    // If drop permitted by application
                             {
-								PlaceItem(item);                            // Place dropped item in this cell
-
+							
                                 //riftar
-                                if(gameObject.tag == "Piring")
+                                if(gameObject.tag == "Piring" && item.name != "ItemEsTeh")
                                 {
+                                    PlaceItem(item);                            // Place dropped item in this cell
+
                                     Debug.Log("Piring Drop Only");
                                     piringCont.SetItem(item.name);
                                 }
                                 if (gameObject.tag == "Customer")
                                 {
+                                    PlaceItem(item);                            // Place dropped item in this cell
+
                                     Debug.Log("Customer Drop Only");
                                     custCont.cekOrder(item.tag);
                                 }
-                                if(gameObject.tag == "Sampah")
+                                if (this.tag == "Gelas" && item.name == "ItemEsTeh")
                                 {
+                                    PlaceItem(item);                            // Place dropped item in this cell
+
+                                    Debug.Log("Gelas Drop Only");
+                                    piringCont.SetItem(item.name);
+                                    piringCont.dragGelasOn();
+                                }
+                                if (gameObject.tag == "Sampah")
+                                {
+                                    PlaceItem(item);                            // Place dropped item in this cell
+
                                     this.descPublic.sourceCell.gameObject.SetActive(false);           //access sourceCell and then deactive it
                                     Destroy(this.transform.GetChild(0).gameObject);           //hapus child (item)
                                 }

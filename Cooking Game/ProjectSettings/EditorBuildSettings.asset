@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/AssetStore/SimpleDragAndDrop/Scenes/Demo.unity
     guid: 05de3a34ad45d9743a922d009949f0ad
   - enabled: 1
-    path: Assets/Scenes/Main Level.unity
+    path: Assets/Scenes/MainMenu.unity
+    guid: bfa3173f7ad512e458748d62d3bfff40
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: ef9d49d1f54051948ab5c2a544648601
+  - enabled: 1
+    path: Assets/Scenes/Main Level (old).unity
     guid: 2bab19c20b1d8044fbfff2fc4c24e673
   m_configObjects: {}

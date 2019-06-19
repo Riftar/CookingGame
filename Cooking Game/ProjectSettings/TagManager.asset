@@ -28,6 +28,8 @@ TagManager:
   - 2
   - 3
   - 4
+  - Gelas
+  - ItemEsTeh
   layers:
   - Default
   - TransparentFX

@@ -23,12 +23,12 @@ public class GameController : MonoBehaviour
 
     private int maxCustomer = 1;
     public int currentCustomer = 0;
-    private float custTime = 50f;
+    private float levelUpTime = 50f;
 
     public bool[] spawnPointKosong = new bool[4];
     public int nyawa = 5;
     int custDone = 0;
-    float duit = 900000f;
+    public float duit = 0f;
     int currentPrefabNo = 0;
 
 
@@ -46,14 +46,14 @@ public class GameController : MonoBehaviour
             spawnPointKosong[i] = true;
         }
 
-        InvokeRepeating("tambahSusah", custTime, custTime);
+        InvokeRepeating("tambahSusah", levelUpTime, levelUpTime);
 
     }
     public void spawn()
     {
         //ienumerator wait to spawn
 
-        int rand = Random.Range(0,4);
+        int rand = Random.Range(0,3);
         if (spawnPointKosong[rand] == true)
         {
            currentCustomer++;         
@@ -69,8 +69,9 @@ public class GameController : MonoBehaviour
     {
         customerLevelText.text = "Customer level: " + customerPrefab[currentPrefabNo].name.ToString();
         maxCustomerText.text = "maxCsutomer: " + maxCustomer.ToString();
-        duitText.text = string.Format("{0:C}",duit);
-        if (currentCustomer < maxCustomer)
+        //duitText.text = string.Format("{0:C}",duit);
+        duitText.text = "Rp. " + string.Format("{0:N2}",duit);
+        if (currentCustomer < maxCustomer || currentCustomer == 0)
         {
             spawn();
         }
@@ -82,13 +83,13 @@ public class GameController : MonoBehaviour
         if (nyawa <= 0)
         {
             //game over
-            gameOverCanvas.SetActive(true);
+            //gameOverCanvas.SetActive(true);
         }
     }
 
     public void nyawaKurang() //parsing jumlah duit kurang
     {
-        duit -= 500;
+        duit -= 2000;
         nyawa -= 1;
         currentCustomer--;
         Debug.Log(nyawa);
@@ -119,8 +120,7 @@ public class GameController : MonoBehaviour
     {
         //kalo pesenan bener
         custDone++;
-        duit += 1000f;
-        currentCustomer--;
+        //duit += 1000f;
         custText.text = "Customer Done: " + custDone.ToString();
        
     }

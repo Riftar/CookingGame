@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PiringController : MonoBehaviour
 {
+
     [SerializeField]
     public Text namaItem;
     [SerializeField]
@@ -13,6 +14,7 @@ public class PiringController : MonoBehaviour
     [SerializeField]
     public GameObject[] makanan;
 
+
     public bool ItemNasi { get; set; }
     public bool ItemAyam { get; set; }
     public bool ItemTelur { get; set; }
@@ -20,6 +22,7 @@ public class PiringController : MonoBehaviour
     public bool ItemJeroan { get; set; }
     public bool ItemKubis { get; set; }
     public bool ItemKoya { get; set; }
+    public bool ItemEsTeh { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,7 @@ public class PiringController : MonoBehaviour
         ItemJeroan = false;
         ItemKubis = false;
         ItemKoya = false;
+        ItemEsTeh = false;
     }
 
     // Update is called once per frame
@@ -51,7 +55,7 @@ public class PiringController : MonoBehaviour
         myImage.color = tempColor;
         simpanItem(name, true);                                            //set bool item ke true
 
-        if(name == "ItemKuah")
+        if(name == "ItemKoya")
         {
             cekMakanan();                                                  //item kuah terakhir buat cek makanan bener/gak
         }
@@ -60,57 +64,57 @@ public class PiringController : MonoBehaviour
     private void simpanItem(string name, bool value)
     {
         this.GetType().GetProperty(name).SetValue(this, value);
-        //Debug.Log(name + value);
+        Debug.Log(name + value);
     }
 
     void cekMakanan()
     {
         dragCell.SetActive(true);                               //aktivasi drag cell
         
-        if(ItemNasi && ItemAyam && ItemKoya && !ItemKubis && !ItemJeroan && !ItemTelur)
+        if(ItemNasi && ItemAyam && ItemKuah && !ItemKubis && !ItemJeroan && !ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[0], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //makanan[0].SetActive(true);
             //Debug.Log("nasi, ayam, koya");
         }
-        else if (ItemNasi && ItemAyam && ItemKoya && ItemKubis && !ItemJeroan && !ItemTelur)
+        else if (ItemNasi && ItemAyam && ItemKuah && ItemKubis && !ItemJeroan && !ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[1], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, kubis");
         }
-        else if(ItemNasi && ItemAyam && ItemKoya && !ItemKubis && ItemJeroan && !ItemTelur)
+        else if(ItemNasi && ItemAyam && ItemKuah && !ItemKubis && ItemJeroan && !ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[2], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, jeroan");
         }
-        else if(ItemNasi && ItemAyam && ItemKoya && !ItemKubis && !ItemJeroan && ItemTelur)
+        else if(ItemNasi && ItemAyam && ItemKuah && !ItemKubis && !ItemJeroan && ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[3], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, telur");
         }
-        else if(ItemNasi && ItemAyam && ItemKoya && ItemKubis && ItemJeroan && !ItemTelur)
+        else if(ItemNasi && ItemAyam && ItemKuah && ItemKubis && ItemJeroan && !ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[4], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, kubis, jeroan");
         }
-        else if(ItemNasi && ItemAyam && ItemKoya && ItemKubis && !ItemJeroan && ItemTelur)
+        else if(ItemNasi && ItemAyam && ItemKuah && ItemKubis && !ItemJeroan && ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[5], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, kubis, telur");
         }
-        else if (ItemNasi && ItemAyam && ItemKoya && !ItemKubis && ItemJeroan && ItemTelur)
+        else if (ItemNasi && ItemAyam && ItemKuah && !ItemKubis && ItemJeroan && ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[6], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, jeroan, telur");
         }
-        else if (ItemNasi && ItemAyam && ItemKoya && ItemKubis && ItemJeroan && ItemTelur)
+        else if (ItemNasi && ItemAyam && ItemKuah && ItemKubis && ItemJeroan && ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[7], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
@@ -121,6 +125,14 @@ public class PiringController : MonoBehaviour
             GameObject MakananJadi = Instantiate(makanan[8], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
         }
+        resetOpacity();
+    }
+
+    public void dragGelasOn()
+    {
+        dragCell.SetActive(true);
+        GameObject MakananJadi = Instantiate(makanan[0], transform);
+        MakananJadi.transform.SetParent(dragCell.transform);
         resetOpacity();
     }
 
@@ -141,6 +153,7 @@ public class PiringController : MonoBehaviour
             ItemJeroan = false;
             ItemKubis = false;
             ItemKoya = false;
+            ItemEsTeh = false;
         }
     }
 }

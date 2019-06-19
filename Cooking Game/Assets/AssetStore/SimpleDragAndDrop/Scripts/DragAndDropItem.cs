@@ -23,6 +23,10 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	private static string canvasName = "DragAndDropCanvas";                   		// Name of canvas
 	private static int canvasSortOrder = 100;										// Sort order for canvas
 
+    //riftar
+    [SerializeField]
+    private GameObject tehHolder;
+
 	/// <summary>
 	/// Awake this instance.
 	/// </summary>
@@ -44,6 +48,7 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 			canvas.sortingOrder = canvasSortOrder;
 		}
+        
 	}
 
 	/// <summary>
@@ -52,8 +57,12 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	/// <param name="eventData"></param>
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		if (dragDisabled == false)
+        if (dragDisabled == false)
 		{
+            if(this.name == "ItemEsTeh" && tehHolder!=null)
+            {
+                tehHolder.SetActive(false);
+            }
 			sourceCell = GetCell();                       							// Remember source cell
 			draggedItem = this;                                             		// Set as dragged item
 			// Create item's icon
@@ -88,8 +97,8 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	/// </summary>
 	/// <param name="data"></param>
 	public void OnDrag(PointerEventData data)
-	{
-		if (icon != null)
+    {
+        if (icon != null)
 		{
 			icon.transform.position = Input.mousePosition;                          // Item's icon follows to cursor in screen pixels
 		}
@@ -101,6 +110,10 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	/// <param name="eventData"></param>
 	public void OnEndDrag(PointerEventData eventData)
 	{
+        if(this.name == "ItemEsTeh" && tehHolder != null)
+        {
+            tehHolder.SetActive(true);
+        }
         ResetConditions();
 	}
 

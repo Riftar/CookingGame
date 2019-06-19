@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5283236552176788845}
   - component: {fileID: 5283236552176788844}
   - component: {fileID: 5283236552176788834}
+  - component: {fileID: 2834169228580878599}
   m_Layer: 5
   m_Name: 4 + telur
   m_TagString: 4+Telur
@@ -87,3 +88,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20c67a56d62e94747b8f17db1b0ffc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tehHolder: {fileID: 0}
+--- !u!114 &2834169228580878599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283236552176788833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae89cde266fa564982004b344e6cc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  makananData: {fileID: 11400000, guid: e5516facbec95104599e7aeda215e1a5, type: 2}
