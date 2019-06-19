@@ -47,7 +47,6 @@ public class GameController : MonoBehaviour
         }
 
         InvokeRepeating("tambahSusah", levelUpTime, levelUpTime);
-
     }
     public void spawn()
     {
@@ -70,7 +69,8 @@ public class GameController : MonoBehaviour
         customerLevelText.text = "Customer level: " + customerPrefab[currentPrefabNo].name.ToString();
         maxCustomerText.text = "maxCsutomer: " + maxCustomer.ToString();
         //duitText.text = string.Format("{0:C}",duit);
-        duitText.text = "Rp. " + string.Format("{0:N2}",duit);
+        //duitText.text = "Rp. " + string.Format("{0:N2}",duit);
+        duitText.text = duit.ToString();
         if (currentCustomer < maxCustomer || currentCustomer == 0)
         {
             spawn();

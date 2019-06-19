@@ -35,6 +35,7 @@ public class PiringController : MonoBehaviour
         ItemKubis = false;
         ItemKoya = false;
         ItemEsTeh = false;
+        SetItem("ItemEsTeh");    //dipanggil di start karna gak pake teko teh
     }
 
     // Update is called once per frame
