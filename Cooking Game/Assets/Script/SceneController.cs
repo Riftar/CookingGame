@@ -5,10 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            backScene();
+        }
+    }
+
     // Start is called before the first frame update
     public void nextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+    public void backScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void goToMenuScene()

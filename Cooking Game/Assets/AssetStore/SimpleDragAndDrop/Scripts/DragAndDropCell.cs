@@ -213,21 +213,21 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                                 {
                                     PlaceItem(item);                            // Place dropped item in this cell
 
-                                    Debug.Log("Piring Drop Only");
+                                    //Debug.Log("Piring Drop Only");
                                     piringCont.SetItem(item.name);
                                 }
                                 if (gameObject.tag == "Customer")
                                 {
                                     PlaceItem(item);                            // Place dropped item in this cell
 
-                                    Debug.Log("Customer Drop Only");
+                                   // Debug.Log("Customer Drop Only");
                                     custCont.cekOrder(item.tag);
                                 }
                                 if (this.tag == "Gelas" && item.name == "ItemEsTeh")
                                 {
                                     PlaceItem(item);                            // Place dropped item in this cell
 
-                                    Debug.Log("Gelas Drop Only");
+                                    //Debug.Log("Gelas Drop Only");
                                     piringCont.SetItem(item.name);
                                     piringCont.dragGelasOn();
                                 }

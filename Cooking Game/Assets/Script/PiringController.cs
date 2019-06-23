@@ -49,7 +49,7 @@ public class PiringController : MonoBehaviour
         namaItem.text = name;
 
         GameObject item = GameObject.FindGameObjectWithTag(name);
-        Debug.Log(name);
+        //Debug.Log(name);
         Image myImage = item.GetComponent<Image>();
         Color tempColor = myImage.color;
         tempColor.a = 1f;                                                  //munculin gambar sesuai item
@@ -65,7 +65,7 @@ public class PiringController : MonoBehaviour
     private void simpanItem(string name, bool value)
     {
         this.GetType().GetProperty(name).SetValue(this, value);
-        Debug.Log(name + value);
+        //Debug.Log(name + value);
     }
 
     void cekMakanan()

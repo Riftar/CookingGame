@@ -8,13 +8,15 @@ public class GameController : MonoBehaviour
 {
 
     public GameObject[] customerPrefab;            //masukan semua level prefab customer, bedanya di range makanan yg dipesan
-    private GameObject currentLevelCustomer;
     [SerializeField]
     private GameObject[] playerHolder;
     [SerializeField]
     private GameObject gameOverCanvas;
     [SerializeField]
     private GameObject[] panelNyawa;
+
+    [SerializeField]
+    private GameObject[] customer;
 
     [SerializeField]
     private Text custText;
@@ -29,7 +31,7 @@ public class GameController : MonoBehaviour
     public int nyawa = 5;
     int custDone = 0;
     public float duit = 0f;
-    int currentPrefabNo = 0;
+    public int currentlevelCustomer = 0;
 
 
     [SerializeField]
@@ -37,17 +39,24 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Text maxCustomerText;
 
+    void Awake()
+    {
+        InvokeRepeating("tambahSusah", levelUpTime, levelUpTime);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        currentLevelCustomer = customerPrefab[currentPrefabNo];
         for(int i = 0; i <=3; i++)
         {
             spawnPointKosong[i] = true;
         }
-
-        InvokeRepeating("tambahSusah", levelUpTime, levelUpTime);
     }
+
+    /// <summary>
+    /// obsolete. bcs intantiating create a problem on csutomer scale/position.
+    /// cek if spawn point kosong, intantiate as a current level customer & set parent, spawn point !kosong
+    /// </summary>
     public void spawn()
     {
         //ienumerator wait to spawn
@@ -56,7 +65,7 @@ public class GameController : MonoBehaviour
         if (spawnPointKosong[rand] == true)
         {
            currentCustomer++;         
-           GameObject Customer = Instantiate(customerPrefab[currentPrefabNo], playerHolder[rand].transform.position, Quaternion.identity);
+           GameObject Customer = Instantiate(customerPrefab[currentlevelCustomer], playerHolder[rand].transform.position, Quaternion.identity);
            Debug.Log("Spawn " + currentCustomer);
            Customer.transform.SetParent(playerHolder[rand].transform, true);
            spawnPointKosong[rand] = false;
@@ -64,22 +73,38 @@ public class GameController : MonoBehaviour
         
     }
 
-    void Update()
+    /// <summary>
+    /// new function. instead of using instantiate, im using active/deactive
+    /// </summary>
+    void activateCustomer()
     {
-        customerLevelText.text = "Customer level: " + customerPrefab[currentPrefabNo].name.ToString();
+        int rand = Random.Range(0, 3);
+        if (spawnPointKosong[rand] == true)
+        {
+            currentCustomer++;
+            customer[rand].SetActive(true);
+            spawnPointKosong[rand] = false;
+        }
+    }
+
+    void Update()
+    {        
+        customerLevelText.text = "Customer level: " + customerPrefab[currentlevelCustomer].name.ToString();
         maxCustomerText.text = "maxCsutomer: " + maxCustomer.ToString();
         //duitText.text = string.Format("{0:C}",duit);
         //duitText.text = "Rp. " + string.Format("{0:N2}",duit);
         duitText.text = duit.ToString();
         if (currentCustomer < maxCustomer || currentCustomer == 0)
         {
-            spawn();
+            //spawn();
+            activateCustomer();
         }
 
         if(Input.GetKeyDown(KeyCode.D))
         {
-            spawn();
+                spawn();
         }
+
         if (nyawa <= 0)
         {
             //game over
@@ -92,7 +117,7 @@ public class GameController : MonoBehaviour
         duit -= 2000;
         nyawa -= 1;
         currentCustomer--;
-        Debug.Log(nyawa);
+        //Debug.Log(nyawa);
         panelNyawa[nyawa].SetActive(false);      
     }
 
@@ -103,16 +128,16 @@ public class GameController : MonoBehaviour
 
     void tambahSusah()
     {
-        if(currentPrefabNo < customerPrefab.Length-1)
+        if (currentlevelCustomer < customerPrefab.Length - 1)
         {
-            currentPrefabNo++;
+            currentlevelCustomer++;
         }
-       
+
         if (maxCustomer <4)                    //dibikin if biar ada maksimalnya
         {
             maxCustomer++;
            // custTime = custTime * 1.5f;
-            Debug.Log(maxCustomer);
+            //Debug.Log(maxCustomer);
         }
     }
 
