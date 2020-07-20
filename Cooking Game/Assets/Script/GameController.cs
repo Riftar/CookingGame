@@ -101,13 +101,13 @@ public class GameController : MonoBehaviour
         if (nyawa <= 0)
         {
             //game over
-            //gameOverCanvas.SetActive(true);
+            gameOverCanvas.SetActive(true);
         }
     }
 
     public void nyawaKurang() //parsing jumlah duit kurang
     {
-        duit -= 2000;
+        duit -= 50;
         nyawa -= 1;
         currentCustomer--;
         //Debug.Log(nyawa);

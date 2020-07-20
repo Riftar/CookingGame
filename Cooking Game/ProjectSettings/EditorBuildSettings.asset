@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main Level (old).unity
     guid: 2bab19c20b1d8044fbfff2fc4c24e673
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Level.unity
     guid: b231cbe903607d34fb3d6e8f04f52f82
+  - enabled: 1
+    path: Assets/Scenes/Main Level 2020.unity
+    guid: 501be28a9b0fcaa48befd454be06427e
   m_configObjects: {}

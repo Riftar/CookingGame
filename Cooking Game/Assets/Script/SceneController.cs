@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject[] panelImage;
+    private bool isMainImage = true;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -37,5 +40,13 @@ public class SceneController : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1;
+    }
+
+    public void NextImage()
+    {
+        isMainImage = !isMainImage;
+
+        panelImage[0].SetActive(isMainImage);
+        panelImage[1].SetActive(!isMainImage);
     }
 }

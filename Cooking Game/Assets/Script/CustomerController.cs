@@ -66,9 +66,9 @@ public class CustomerController : MonoBehaviour
             //int index = int.Parse(this.transform.parent.parent.gameObject.tag);
             
 
-#if !endlessMode
+
             gameCont.nyawaKurang();
-#endif
+
 
             StartCoroutine(WaitforDestroy());
 
@@ -149,7 +149,7 @@ public class CustomerController : MonoBehaviour
             dragCell.descPublic.item.GetComponent<Image>().color = Color.red;
 #endif
             //StartCoroutine(WaitforFunction("destroy", 1f));                      // gak jadi di destroy karna jadinya masih dikasih kesempatan
-
+            gameCont.nyawaKurang();
 #if endlessMode
             dragCell.descPublic.sourceCell.gameObject.SetActive(false);           //access sourceCell and then deactive it
             StartCoroutine(WaitforDestroy());
