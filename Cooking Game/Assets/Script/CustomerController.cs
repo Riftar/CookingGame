@@ -84,14 +84,14 @@ public class CustomerController : MonoBehaviour
         currentMenu = menuPrefab[rand].tag.ToString();
         order.transform.SetParent(menuHolder.transform, false);
 
-        //spawn minum
-        int randMinum = Random.Range(0, 2);
-        if(randMinum == 1)
-        {
-            isMinum = true;
-            minumOrder = Instantiate(minumPrefab, minumHolder.transform.position, Quaternion.identity);
-            minumOrder.transform.SetParent(minumHolder.transform, false);
-        }
+        ////spawn minum
+        //int randMinum = Random.Range(0, 2);
+        //if(randMinum == 1)
+        //{
+        //    isMinum = true;
+        //    minumOrder = Instantiate(minumPrefab, minumHolder.transform.position, Quaternion.identity);
+        //    minumOrder.transform.SetParent(minumHolder.transform, false);
+        //}
     }
 
     void cekLevel()
