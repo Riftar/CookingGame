@@ -18,9 +18,12 @@ public class PiringController : MonoBehaviour
     public bool ItemNasi { get; set; }
     public bool ItemAyam { get; set; }
     public bool ItemTelur { get; set; }
-    public bool ItemKuah { get; set; }
+    public bool ItemKuahKuningBening { get; set; }
+    public bool ItemKuahPutihBening { get; set; }
     public bool ItemJeroan { get; set; }
-    public bool ItemKubis { get; set; }
+    public bool ItemPerkedel { get; set; }
+    public bool ItemDaging { get; set; }
+    public bool ItemSoun { get; set; }
     public bool ItemKoya { get; set; }
     public bool ItemEsTeh { get; set; }
 
@@ -30,9 +33,11 @@ public class PiringController : MonoBehaviour
         ItemNasi = false;
         ItemAyam = false;
         ItemTelur = false;
-        ItemKuah = false;
+        ItemKuahKuningBening = false;
+        ItemKuahPutihBening = false;
         ItemJeroan = false;
-        ItemKubis = false;
+        ItemPerkedel = false;
+        ItemSoun = false;
         ItemKoya = false;
         ItemEsTeh = false;
         SetItem("ItemEsTeh");    //dipanggil di start karna gak pake teko teh
@@ -56,7 +61,7 @@ public class PiringController : MonoBehaviour
         myImage.color = tempColor;
         simpanItem(name, true);                                            //set bool item ke true
 
-        if(name == "ItemKoya")
+        if(name == "ItemKuahKuningBening" || name=="ItemKuahPutihBening")
         {
             cekMakanan();                                                  //item kuah terakhir buat cek makanan bener/gak
         }
@@ -72,58 +77,28 @@ public class PiringController : MonoBehaviour
     {
         dragCell.SetActive(true);                               //aktivasi drag cell
         
-        if(ItemNasi && ItemAyam && ItemKuah && !ItemKubis && !ItemJeroan && !ItemTelur)
+        if(ItemNasi && ItemAyam && ItemKuahKuningBening && ItemSoun && ItemKoya && ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[0], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //makanan[0].SetActive(true);
             //Debug.Log("nasi, ayam, koya");
         }
-        else if (ItemNasi && ItemAyam && ItemKuah && ItemKubis && !ItemJeroan && !ItemTelur)
+        else if (ItemNasi && ItemAyam && ItemKuahPutihBening && ItemSoun && ItemPerkedel && ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[1], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, kubis");
         }
-        else if(ItemNasi && ItemAyam && ItemKuah && !ItemKubis && ItemJeroan && !ItemTelur)
+        else if(ItemNasi && ItemDaging && ItemKuahKuningBening && ItemSoun && ItemJeroan && ItemTelur)
         {
             GameObject MakananJadi = Instantiate(makanan[2], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
             //Debug.Log("nasi, ayam, koya, jeroan");
         }
-        else if(ItemNasi && ItemAyam && ItemKuah && !ItemKubis && !ItemJeroan && ItemTelur)
-        {
-            GameObject MakananJadi = Instantiate(makanan[3], transform);
-            MakananJadi.transform.SetParent(dragCell.transform);
-            //Debug.Log("nasi, ayam, koya, telur");
-        }
-        else if(ItemNasi && ItemAyam && ItemKuah && ItemKubis && ItemJeroan && !ItemTelur)
-        {
-            GameObject MakananJadi = Instantiate(makanan[4], transform);
-            MakananJadi.transform.SetParent(dragCell.transform);
-            //Debug.Log("nasi, ayam, koya, kubis, jeroan");
-        }
-        else if(ItemNasi && ItemAyam && ItemKuah && ItemKubis && !ItemJeroan && ItemTelur)
-        {
-            GameObject MakananJadi = Instantiate(makanan[5], transform);
-            MakananJadi.transform.SetParent(dragCell.transform);
-            //Debug.Log("nasi, ayam, koya, kubis, telur");
-        }
-        else if (ItemNasi && ItemAyam && ItemKuah && !ItemKubis && ItemJeroan && ItemTelur)
-        {
-            GameObject MakananJadi = Instantiate(makanan[6], transform);
-            MakananJadi.transform.SetParent(dragCell.transform);
-            //Debug.Log("nasi, ayam, koya, jeroan, telur");
-        }
-        else if (ItemNasi && ItemAyam && ItemKuah && ItemKubis && ItemJeroan && ItemTelur)
-        {
-            GameObject MakananJadi = Instantiate(makanan[7], transform);
-            MakananJadi.transform.SetParent(dragCell.transform);
-            //Debug.Log("komplit");
-        }
         else
         {
-            GameObject MakananJadi = Instantiate(makanan[8], transform);
+            GameObject MakananJadi = Instantiate(makanan[3], transform);
             MakananJadi.transform.SetParent(dragCell.transform);
         }
         resetOpacity();
@@ -142,17 +117,40 @@ public class PiringController : MonoBehaviour
         foreach (Transform child in transform)                      //akses semua child dr piring, yg mana semua item makanan
         {
             //Debug.Log(child.gameObject.name);
-            Image myImage = child.gameObject.GetComponent<Image>();
-            Color tempColor = myImage.color;
-            tempColor.a = 0f;                                                  //ngilangin gambar sesuai item
-            myImage.color = tempColor;
+            if(child.gameObject.GetComponent<Image>() != null)
+            {
+                Image myImage = child.gameObject.GetComponent<Image>();
+                Color tempColor = myImage.color;
+                tempColor.a = 0f;                                                  //ngilangin gambar sesuai item
+                myImage.color = tempColor;
+            }
+           
+
+
+            //TODO ini boiler plate harus diperbaiki, karena childnya gak langsung item
+            foreach(Transform child2 in child.transform)
+            {
+                //Debug.Log(child.gameObject.name);
+                if (child2.gameObject.GetComponent<Image>() != null)
+                {
+                    Image myImage2 = child2.gameObject.GetComponent<Image>();
+                    Color tempColor2 = myImage2.color;
+                    tempColor2.a = 0f;                                                  //ngilangin gambar sesuai item
+                    myImage2.color = tempColor2;
+
+                }
+
+            }
 
             ItemNasi = false;
             ItemAyam = false;
             ItemTelur = false;
-            ItemKuah = false;
+            ItemKuahKuningBening = false;
+            ItemKuahPutihBening = false;
             ItemJeroan = false;
-            ItemKubis = false;
+            ItemPerkedel = false;
+            ItemDaging = false;
+            ItemSoun = false;
             ItemKoya = false;
             ItemEsTeh = false;
         }

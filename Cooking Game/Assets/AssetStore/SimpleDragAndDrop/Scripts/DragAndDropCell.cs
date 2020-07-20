@@ -190,8 +190,7 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                                         else if (this.tag == "Customer")
                                         {
                                             Debug.Log("Customer");
-
-                                           custCont.cekOrder(item.name);
+                                            custCont.cekOrder(item.tag);                                   
                                                 
                                         }
                                     }
@@ -220,8 +219,9 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                                 {
                                     PlaceItem(item);                            // Place dropped item in this cell
 
-                                   // Debug.Log("Customer Drop Only");
+                                    // Debug.Log("Customer Drop Only")
                                     custCont.cekOrder(item.tag);
+                                    
                                 }
                                 if (this.tag == "Gelas" && item.name == "ItemEsTeh")
                                 {

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CustomerController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] menuPrefab;
+    private Sprite[] menuPrefab;
     [SerializeField]
     private GameObject minumPrefab;
     [SerializeField]
@@ -45,7 +45,7 @@ public class CustomerController : MonoBehaviour
     void OnEnable()
     {
         Debug.Log("Im Enable");
-        timeLeft = 40f;
+        timeLeft = 2f;
         timer.maxValue = timeLeft;
         gameCont = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         player = transform.parent.gameObject;
@@ -70,7 +70,7 @@ public class CustomerController : MonoBehaviour
             gameCont.nyawaKurang();
 #endif
 
-            StartCoroutine(WaitforFunction("destroy", 1f));
+            StartCoroutine(WaitforDestroy());
 
         }
     }
@@ -79,10 +79,11 @@ public class CustomerController : MonoBehaviour
     {
         cekLevel();
         int rand = Random.Range(minLevelMakanan, maxLevelMakanan);
-        order = Instantiate(menuPrefab[rand], menuHolder.transform.position, Quaternion.identity);
-        //Debug.Log(rand);
-        currentMenu = menuPrefab[rand].tag.ToString();
-        order.transform.SetParent(menuHolder.transform, false);
+        menuHolder.GetComponent<Image>().sprite = menuPrefab[rand];
+        //order = Instantiate(menuPrefab[rand], menuHolder.transform.position, Quaternion.identity);
+        Debug.Log(rand);
+        currentMenu = menuPrefab[rand].name;
+        //order.transform.SetParent(menuHolder.transform, false);
 
         ////spawn minum
         //int randMinum = Random.Range(0, 2);
@@ -99,26 +100,26 @@ public class CustomerController : MonoBehaviour
         if (gameCont.currentlevelCustomer == 0)
         {
             minLevelMakanan = 0;
-            maxLevelMakanan = 1;
+            maxLevelMakanan = 0;
         }
         if (gameCont.currentlevelCustomer == 1)
         {
-            minLevelMakanan = 2;
-            maxLevelMakanan = 4;
+            minLevelMakanan = 0;
+            maxLevelMakanan = 1;
         }
         if (gameCont.currentlevelCustomer == 2)
         {
-            minLevelMakanan = 5;
-            maxLevelMakanan = 7;
+            minLevelMakanan = 0;
+            maxLevelMakanan = 2;
         }
 
     }
 
 
-    public void cekOrder(string name)
+    public void cekOrder(string namaMakanan)
     {
         //Debug.Log(name);
-        if(currentMenu == name)
+        if(currentMenu == namaMakanan)
         {
             cekTime();
 
@@ -134,7 +135,7 @@ public class CustomerController : MonoBehaviour
             dragCell.transform.GetChild(0).gameObject.SetActive(false);           //hapus child (item)
             gameCont.customerDone();
 
-            StartCoroutine(WaitforFunction("destroy", 1f));
+            StartCoroutine(WaitforDestroy());
         }
         else
         {
@@ -151,7 +152,7 @@ public class CustomerController : MonoBehaviour
 
 #if endlessMode
             dragCell.descPublic.sourceCell.gameObject.SetActive(false);           //access sourceCell and then deactive it
-            StartCoroutine(WaitforFunction("destroy", 1f));
+            StartCoroutine(WaitforDestroy());
 #endif
         }
 
@@ -177,18 +178,16 @@ public class CustomerController : MonoBehaviour
 
     }
 
-    IEnumerator WaitforFunction(string function, float time)
+    IEnumerator WaitforDestroy()
     {
-        if(function == "destroy")
-        {        
-            yield return new WaitForSeconds(time);
-            //Destroy(player);
-            player.SetActive(false);
-            int index = int.Parse(this.transform.parent.parent.gameObject.tag);
-            gameCont.spawnPointKosong[index-1] = true;
-            gameCont.currentCustomer--;                                          //biar spawn cust baru
-            Debug.Log("Current cust: " + gameCont.currentCustomer);
-        }
+        yield return new WaitForSeconds(2);
+        //Destroy(player);
+        int index = int.Parse(this.transform.parent.parent.gameObject.tag);
+        player.SetActive(false);
+        gameCont.spawnPointKosong[index-1] = true;
+        gameCont.currentCustomer--;
+        Debug.Log("Current cust: " + gameCont.currentCustomer);
+       
     }
 
     void OnDisable()

@@ -25,9 +25,9 @@ public class GameController : MonoBehaviour
 
     private int maxCustomer = 1;
     public int currentCustomer = 0;
-    private float levelUpTime = 50f;
+    private float levelUpTime = 2f;
 
-    public bool[] spawnPointKosong = new bool[4];
+    public bool[] spawnPointKosong = new bool[3];
     public int nyawa = 5;
     int custDone = 0;
     public float duit = 0f;
@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i <=3; i++)
+        for(int i = 0; i <=2; i++)
         {
             spawnPointKosong[i] = true;
         }

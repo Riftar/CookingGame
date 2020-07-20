@@ -119,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1834097033, guid: 526d9508b0799614789beea66d7ee10f, type: 3}
       propertyPath: maxLevelMakanan
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1834097033, guid: 526d9508b0799614789beea66d7ee10f, type: 3}
       propertyPath: menuHolder
@@ -135,12 +135,20 @@ PrefabInstance:
       objectReference: {fileID: 5480061529808454428}
     - target: {fileID: 1834097033, guid: 526d9508b0799614789beea66d7ee10f, type: 3}
       propertyPath: minLevelMakanan
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1834097033, guid: 526d9508b0799614789beea66d7ee10f, type: 3}
       propertyPath: sliderImage
       value: 
       objectReference: {fileID: 5480061529807772297}
+    - target: {fileID: 1834097033, guid: 526d9508b0799614789beea66d7ee10f, type: 3}
+      propertyPath: minumHolder
+      value: 
+      objectReference: {fileID: 509208117078497089}
+    - target: {fileID: 1834097033, guid: 526d9508b0799614789beea66d7ee10f, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 4608257000617879584}
     - target: {fileID: 1489463505015526880, guid: 526d9508b0799614789beea66d7ee10f,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -166,6 +174,12 @@ PrefabInstance:
 --- !u!1 &5480061530667657447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1489463506307989019, guid: 526d9508b0799614789beea66d7ee10f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6387992990691858172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &509208117078497089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6897165874909282749, guid: 526d9508b0799614789beea66d7ee10f,
     type: 3}
   m_PrefabInstance: {fileID: 6387992990691858172}
   m_PrefabAsset: {fileID: 0}
@@ -217,6 +231,12 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4608257000617879584 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7445968146790792924, guid: 526d9508b0799614789beea66d7ee10f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6387992990691858172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6387992990271683738 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 957065830, guid: 526d9508b0799614789beea66d7ee10f,

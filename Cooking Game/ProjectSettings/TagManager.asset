@@ -4,12 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ItemKuah
   - ItemNasi
   - ItemAyam
   - ItemJeroan
   - ItemTelur
-  - ItemKubis
   - ItemKoya
   - Piring
   - Customer
@@ -30,6 +28,14 @@ TagManager:
   - 4
   - Gelas
   - ItemEsTeh
+  - ItemKuahKuningBening
+  - ItemSoun
+  - ItemKuahPutihBening
+  - SotoAmbengan
+  - SotoBanjar
+  - SotoDagingMadura
+  - ItemDaging
+  - ItemPerkedel
   layers:
   - Default
   - TransparentFX
