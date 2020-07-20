@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
 
     private int maxCustomer = 1;
     public int currentCustomer = 0;
-    private float levelUpTime = 2f;
+    private float levelUpTime = 50f;
 
     public bool[] spawnPointKosong = new bool[3];
     public int nyawa = 5;
@@ -47,10 +47,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i <=2; i++)
-        {
-            spawnPointKosong[i] = true;
-        }
+        spawnPointKosong[0] = true;
     }
 
     /// <summary>
@@ -60,15 +57,13 @@ public class GameController : MonoBehaviour
     public void spawn()
     {
         //ienumerator wait to spawn
-
-        int rand = Random.Range(0,3);
-        if (spawnPointKosong[rand] == true)
+        if (spawnPointKosong[0] == true)
         {
            currentCustomer++;         
-           GameObject Customer = Instantiate(customerPrefab[currentlevelCustomer], playerHolder[rand].transform.position, Quaternion.identity);
+           GameObject Customer = Instantiate(customerPrefab[currentlevelCustomer], playerHolder[0].transform.position, Quaternion.identity);
            Debug.Log("Spawn " + currentCustomer);
-           Customer.transform.SetParent(playerHolder[rand].transform, true);
-           spawnPointKosong[rand] = false;
+           Customer.transform.SetParent(playerHolder[0].transform, true);
+           spawnPointKosong[0] = false;
         }
         
     }
@@ -78,12 +73,12 @@ public class GameController : MonoBehaviour
     /// </summary>
     void activateCustomer()
     {
-        int rand = Random.Range(0, 3);
-        if (spawnPointKosong[rand] == true)
+        int rand = Random.Range(0, 2);
+        if (spawnPointKosong[0] == true)
         {
             currentCustomer++;
             customer[rand].SetActive(true);
-            spawnPointKosong[rand] = false;
+            spawnPointKosong[0] = false;
         }
     }
 
@@ -94,11 +89,9 @@ public class GameController : MonoBehaviour
         //duitText.text = string.Format("{0:C}",duit);
         //duitText.text = "Rp. " + string.Format("{0:N2}",duit);
         duitText.text = duit.ToString();
-        if (currentCustomer < maxCustomer || currentCustomer == 0)
-        {
-            //spawn();
-            activateCustomer();
-        }
+        //spawn();
+        activateCustomer();
+       
 
         if(Input.GetKeyDown(KeyCode.D))
         {

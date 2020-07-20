@@ -45,7 +45,7 @@ public class CustomerController : MonoBehaviour
     void OnEnable()
     {
         Debug.Log("Im Enable");
-        timeLeft = 2f;
+        timeLeft = 38f;
         timer.maxValue = timeLeft;
         gameCont = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         player = transform.parent.gameObject;
@@ -63,8 +63,8 @@ public class CustomerController : MonoBehaviour
             //{
             //    StartCoroutine("MyCoroutine");
             //}
-            int index = int.Parse(this.transform.parent.parent.gameObject.tag);
-            gameCont.spawnPointKosong[index - 1] = true;
+            //int index = int.Parse(this.transform.parent.parent.gameObject.tag);
+            
 
 #if !endlessMode
             gameCont.nyawaKurang();
@@ -100,12 +100,12 @@ public class CustomerController : MonoBehaviour
         if (gameCont.currentlevelCustomer == 0)
         {
             minLevelMakanan = 0;
-            maxLevelMakanan = 0;
+            maxLevelMakanan = 2;
         }
         if (gameCont.currentlevelCustomer == 1)
         {
             minLevelMakanan = 0;
-            maxLevelMakanan = 1;
+            maxLevelMakanan = 2;
         }
         if (gameCont.currentlevelCustomer == 2)
         {
@@ -182,9 +182,9 @@ public class CustomerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         //Destroy(player);
-        int index = int.Parse(this.transform.parent.parent.gameObject.tag);
+        //int index = int.Parse(this.transform.parent.parent.gameObject.tag);
         player.SetActive(false);
-        gameCont.spawnPointKosong[index-1] = true;
+        gameCont.spawnPointKosong[0] = true;
         gameCont.currentCustomer--;
         Debug.Log("Current cust: " + gameCont.currentCustomer);
        
